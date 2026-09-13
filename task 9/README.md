@@ -13,8 +13,17 @@ This project implements a stateful chatbot CLI that maintains dialogue history a
    ```bash
    pip install -r requirements.txt
    ```
-2. Run the chatbot:
+2. Optional: set a Gemini API key for live model calls. If this is not set, the CLI uses local fallback responses so the memory demo still runs offline.
+   ```bash
+   export GEMINI_API_KEY="your-key-here"
+   # Optional: export GEMINI_MODEL="gemini-2.5-flash"
+   ```
+   PowerShell:
+   ```powershell
+   Set-Item Env:GEMINI_API_KEY "your-key-here"
+   ```
+3. Run the chatbot:
    ```bash
    python main.py
    ```
-3. Exit by typing `exit`.
+4. Exit by typing `exit`.

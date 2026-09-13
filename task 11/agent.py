@@ -5,8 +5,13 @@ import requests
 from pypdf import PdfReader
 
 # Gemini API Settings
-GEMINI_API_KEY = "AQ." + "Ab8RN6IHLu1xqiY6AS7Vre_O3xJFHlULxB9TDxKgER-v-AnxIw"
-GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_URL = (
+    f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    if GEMINI_API_KEY
+    else None
+)
 
 # 1. Define local python functions for tools
 def read_text_file(filepath: str) -> str:
@@ -106,6 +111,8 @@ def run_agent_loop(user_query: str):
     
     # Try calling real Gemini API with function calling (short timeout)
     try:
+        if not GEMINI_URL:
+            raise RuntimeError("GEMINI_API_KEY is not configured")
         payload = {
             "contents": contents,
             "tools": GEMINI_TOOLS,
@@ -155,6 +162,8 @@ def run_agent_loop(user_query: str):
                     "contents": contents,
                     "tools": GEMINI_TOOLS
                 }
+                if not GEMINI_URL:
+                    raise RuntimeError("GEMINI_API_KEY is not configured")
                 response2 = requests.post(GEMINI_URL, json=payload2, timeout=4)
                 if response2.status_code == 200:
                     data2 = response2.json()

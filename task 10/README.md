@@ -18,8 +18,17 @@ The three outputs are aggregated and written to a final markdown file.
    ```bash
    pip install -r requirements.txt
    ```
-2. Run the workflow:
+2. Optional: set a Gemini API key for live model calls. If this is not set, the workflow uses deterministic local fallback analysis for the sample report.
+   ```bash
+   export GEMINI_API_KEY="your-key-here"
+   # Optional: export GEMINI_MODEL="gemini-2.5-flash"
+   ```
+   PowerShell:
+   ```powershell
+   Set-Item Env:GEMINI_API_KEY "your-key-here"
+   ```
+3. Run the workflow:
    ```bash
    python main.py
    ```
-3. View the final compiled report in `analysis_report.md`.
+4. View the final compiled report in `analysis_report.md`.

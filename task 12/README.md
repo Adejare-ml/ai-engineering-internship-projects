@@ -14,8 +14,17 @@ This project establishes a full-stack, local AI chat application. It packages th
    ```bash
    pip install -r requirements.txt
    ```
-2. Start the FastAPI server:
+2. Optional: set a Gemini API key for live model calls. If this is not set, the backend serves local fallback responses so the frontend remains usable offline.
+   ```bash
+   export GEMINI_API_KEY="your-key-here"
+   # Optional: export GEMINI_MODEL="gemini-2.5-flash"
+   ```
+   PowerShell:
+   ```powershell
+   Set-Item Env:GEMINI_API_KEY "your-key-here"
+   ```
+3. Start the FastAPI server:
    ```bash
    python backend/main.py
    ```
-3. Open a web browser and navigate to `http://127.0.0.1:8000` to interact with Aura.
+4. Open a web browser and navigate to `http://127.0.0.1:8000` to interact with Aura.

@@ -15,7 +15,16 @@ This project implements an autonomous AI agent capable of using local tools (fil
    ```bash
    pip install -r requirements.txt
    ```
-2. Run the agent:
+2. Optional: set a Gemini API key for live function-calling responses. If this is not set, the script runs its local tool-loop fallback for the sample task.
+   ```bash
+   export GEMINI_API_KEY="your-key-here"
+   # Optional: export GEMINI_MODEL="gemini-2.5-flash"
+   ```
+   PowerShell:
+   ```powershell
+   Set-Item Env:GEMINI_API_KEY "your-key-here"
+   ```
+3. Run the agent:
    ```bash
    python agent.py
    ```

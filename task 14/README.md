@@ -12,11 +12,20 @@ This project implements scaling and latency optimization patterns using **Redis 
 - **Latency reduction**: **~99.8%** speedup.
 
 ## Setup & Running (Docker Compose)
-1. Run the entire multi-container service:
+1. Optional: set a Gemini API key for live model calls. If this is not set, the FastAPI service uses local fallback responses while still demonstrating Redis caching.
+   ```bash
+   export GEMINI_API_KEY="your-key-here"
+   # Optional: export GEMINI_MODEL="gemini-2.5-flash"
+   ```
+   PowerShell:
+   ```powershell
+   Set-Item Env:GEMINI_API_KEY "your-key-here"
+   ```
+2. Run the entire multi-container service:
    ```bash
    docker-compose up --build
    ```
-2. Query the chatbot via the Spring Boot gateway:
+3. Query the chatbot via the Spring Boot gateway:
    - URL: `POST http://localhost:8080/api/springboot/chat`
    - Payload: `{"message": "Hello there", "session_id": "test_scaling"}`
-3. Observe the latency differences and the `"cache_status": "HIT" / "MISS"` tags in the responses.
+4. Observe the latency differences and the `"cache_status": "HIT" / "MISS"` tags in the responses.

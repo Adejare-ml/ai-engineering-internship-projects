@@ -18,8 +18,13 @@ app.add_middleware(
 )
 
 # Gemini API Settings
-GEMINI_API_KEY = "AQ." + "Ab8RN6IHLu1xqiY6AS7Vre_O3xJFHlULxB9TDxKgER-v-AnxIw"
-GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_URL = (
+    f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    if GEMINI_API_KEY
+    else None
+)
 
 # Redis Connection setup
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
@@ -86,6 +91,8 @@ async def chat_endpoint(req: ChatRequest):
     }
     
     try:
+        if not GEMINI_URL:
+            raise RuntimeError("GEMINI_API_KEY is not configured")
         response = requests.post(GEMINI_URL, json=payload, timeout=4)
         if response.status_code == 200:
             data = response.json()
