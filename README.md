@@ -3,13 +3,13 @@ To explore or run any of the tasks:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Adejare-ml/AI_Engineering_intership_projects.git
-   cd AI_Engineering_intership_projects
+   git clone https://github.com/Adejare-ml/ai-engineering-internship-projects.git
+   cd ai-engineering-internship-projects
    ```
 
 2. **Navigate to a Task**:
    ```bash
-   cd "task 15" # Or whichever task you want to run
+   cd "Task 5" # Or another task directory
    ```
 
 3. **Follow the Task's Specific README**:
