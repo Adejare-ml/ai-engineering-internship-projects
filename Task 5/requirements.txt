@@ -1,4 +1,4 @@
-sentence-transformers==5.6.0
+sentence-transformers==6.2.0
 faiss-cpu==1.8.0
 numpy==1.26.4
 pandas==2.2.2
